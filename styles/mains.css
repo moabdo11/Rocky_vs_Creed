@@ -1,0 +1,67 @@
+/*
+  ========================================
+  Custom styles
+  ========================================
+*/
+
+body {
+  font: 300 16px/22px "Lato", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.container {
+  width: 100%;
+  height:  auto;
+  background: LightGray;
+  display: flex;
+  flex-direction: column;
+}
+/*
+  ========================================
+  Primary header
+  ========================================
+*/
+
+.container header {
+  grid-column: 1 / 4;
+  justify-self: center;
+  text-align: center;
+  background: cyan
+}
+/*
+  ========================================
+  Main Section
+  ========================================
+*/
+.boxes {
+  display: flex;
+  justify-content: space-between;
+}
+
+.box-left {
+  justify-content: space-between;
+  margin-right: 100px;
+}
+
+.box-right {
+  justify-content: space-between;
+  margin-right: 100px;
+}
+
+/*
+  ========================================
+  Typography
+  ========================================
+*/
+
+h3 {
+  font-size: 16px;
+  font-weight: 300;
+}
+
+
+
+/*
+========================================
+  Buttons
+========================================
+*/
+
