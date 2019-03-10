@@ -34,6 +34,7 @@ body {
 .boxes {
   display: flex;
   justify-content: space-between;
+   border: 5px solid  #e4d5cc;
 }
 
 .boxes h4 {
@@ -53,6 +54,19 @@ body {
   align-items: center;
 }
 
+#rocky-score {
+  padding-right: 100px;
+}
+
+#apollo-score {
+  padding-left: 100px;
+}
+
+#VS{
+  font-size: 24px;
+  font-weight: 600;
+}
+
 .images {
   height: 200px; 
   width: 150px;
@@ -61,7 +75,7 @@ body {
 .options-header {
   background: white;
   text-align: center;
-  border: 2px solid black;
+  border: 5px solid  #e4d5cc;
 }
 .options-header h3 {
   font-size: 20px;
@@ -80,8 +94,9 @@ body {
 
 
 .image-selections {
-  width: 100px;
-  height: 100px;
+  width: 75px;
+  height: 75px;
+  padding: 10px;
 }
 
 /*
@@ -90,26 +105,17 @@ body {
   ========================================
 */
 
-h3 {
-  font-size: 16px;
-  font-weight: 300;
+@keyframes deneme{
+   from{color:black;}
+   to{color:rgb(145, 135, 135);
+    font-weight: bolder;
+    font-size: 6em;}
 }
 
- #rect {
-    animation-name: rainbow;
-    animation-duration: 4s;
-  }
-
-  img:hover {
-    animation-name: width;
-    animation-duration: 500ms;
-  }
-
-  @keyframes width {
-    100% {
-      height: 100px;
-    }
-  }
+.animated{
+    animation-name: deneme;
+    animation-duration: 0.7s;
+}
 
 
 /*
@@ -117,4 +123,15 @@ h3 {
   Buttons
 ========================================
 */
+
+:hover.button {
+    border:dashed red 5px;
+    transform: scale(1.1,1.1);
+  }
+
+
+:focus.button{
+      transform: scale(0.7,0.7);
+      transition: all .6s ease;
+  }
 

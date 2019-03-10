@@ -1,5 +1,42 @@
-let compWins = 0;
-let playerWins = 0;
+
+/* Event listeners added to buttons; */
+
+document.querySelector("#rock").addEventListener("click", () => playRound("rock", computerPlay()));
+document.querySelector("#paper").addEventListener("click", () => playRound("paper", computerPlay()));
+document.querySelector("#scissors").addEventListener("click", () => playRound("scissors", computerPlay()));
+document.querySelector("#reset").addEventListener("click", () => reset());
+
+
+// score animation function;
+function anim(x) {
+	if (x == "p") {
+		document.querySelector("#rocky-score").classList.add("score-animation");
+	}
+	else if (x == "c") {
+		document.querySelector("#apollo-score").classList.add("score-animation");
+	}
+	// after playing the animation, remove animation class;
+	setTimeout(function () {
+		document.querySelector("#rocky-score").classList.remove("score-animation");
+		document.querySelector("#apollo-score").classList.remove("score-animation");
+	}, 1200);
+
+}
+
+
+
+// to restart the game;
+function reset() {
+	computerScore = 0;
+	playerScore = 0;
+	document.querySelector("#reset").style = "visibility:hidden";
+	document.querySelector("#status").innerHTML = "Select one;";
+	updateScore();
+}
+
+let apolloWins = 0;
+let rockyWins = 0;
+scoreKeeping();
 
 function computerPlay() {
 	let choices = ['rock', 'paper', 'scissors'];
@@ -19,27 +56,28 @@ function playerPlay() {
 function playRound(playerSelection, computerSelection) {
 
     if (playerSelection === 'rock' && computerSelection === 'paper') {
-			alert(`You lose. ${playerSelection} vs ${computerSelection}`); 
+			document.querySelector("#result").innerHTML = "Apollo wins, paper beats rock!";
 				result = 1;
     } else if (playerSelection === 'rock' && computerSelection === 'scissors') {
-			alert(`You win. ${playerSelection} vs ${computerSelection}`);
+			document.querySelector("#result").innerHTML = "Rocky wins, rock beats scissors!";
 				result = 2;
 	  }	else if (playerSelection === 'paper' && computerSelection=== 'rock') {
-			alert(`You win. ${playerSelection} vs ${computerSelection}`);
+			document.querySelector("#result").innerHTML = "Rocky wins, paper beats rock!";
 				result = 2;
 	  }	else if (playerSelection === 'paper' && computerSelection === 'scissors') {
-			alert(`You lose. ${playerSelection} vs ${computerSelection}`);
+			document.querySelector("#result").innerHTML = "Apollow wins, scissors beats paper!";
 				result = 1;
 	  } else if (playerSelection === 'scissors' && computerSelection === 'rock') {
-			alert(`You lose. ${playerSelection} vs ${computerSelection}`);
+			document.querySelector("#result").innerHTML = "Apollo wins, rock beats scissors!";
 				result = 1;
 		} else if (playerSelection === 'scissors' && computerSelection === 'paper') {
-			alert(`You win. ${playerSelection} vs ${computerSelection}`);
+			document.querySelector("#result").innerHTML = "Rocky wins, scissors beats paper!";
 				result = 2;
 	} 	else {
 				result = 0;
+				document.querySelector("#status").innerHTML = "It's a tie.";
 	}
-	return result;
+	 scoreKeeping();
 }
 
 function perRoundPoints(result) {
@@ -64,4 +102,24 @@ function game() {
 		let result = playRound(playerSelection, computerSelection);
 			perRoundPoints();
 	}
-};
+}
+
+
+// Keeping Score
+
+function scoreKeeping() {
+	document.querySelector("#rscore").innerHTML = rockyWins;
+	document.querySelector('#ascore').innerHTML = apolloWins;
+	if (rockyWins >= 5 && rockyWins > apolloWins) {
+		alert('Yaay, you won!!!');
+		document.querySelector("#reset").style = "visibility:visible";
+	}
+	if (apolloWins >= 5 && apolloWins > rockyWins) {
+		alert('sorry, you lost this time!');
+		document.querySelector("#reset").style = "visibility:visible";
+	}
+
+
+	//to reset focus after clicking;
+	document.activeElement.blur();
+}

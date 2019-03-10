@@ -26,33 +26,44 @@
 				</div>
 
 				<div class="score-box">
-					<p>Score</p>
-					<p>VS</p>
-					<p>Score</p>
+					<div id="rocky-score">
+						<p>SCORE: <br>
+							<div id="update1"></div>
+						</p>
+					</div>
+					<p id="VS">VS <br></p>
+					<div id= "apollo-score">
+						<p> SCORE:<br>
+							<div id="update2"></div>
+						</p>
+					</div>
 				</div>
 
 				<div class="box-right">
-						<h4>Ivan Drago</h4>
+						<h4>Apollo Creed</h4>
 						<img class="images" src="assets/apollo.png" alt="Apollo Creed">
 				</div>
 			</div> 
 				<div class="options-header">
 					<h3>CHOOSE YOUR PUNCH</h3>
+					<p id="result" style="text-align:center"></p><br>
 				</div>
 				<div class="choicebox">
 					<div>
 						<h4>Rock</h4>
-						<img src="assets/rock.png" class="image-selections" alt="A Rock">
+						<img src="assets/rock.png" id="rock" class="button image-selections" alt="A Rock">
 					</div>
-					<div class="choices">
+					<div>
 						<h4>Paper</h4>
-						<img src="assets/paper.png" class="image-selections" alt="Paper">
+						<img src="assets/paper.png" id="paper" class="button image-selections" alt="Paper">
 					</div>
-					<div class="choices">
+					<div>
 						<h4>Scissors</h4>
-						<img src="assets/scissors.svg" class="image-selections" alt="Sciccors">
+						<img src="assets/scissors.svg" id="scissors" class="button image-selections" alt="Sciccors">
 					</div>
 				</div>
 		</div>	
+
+		<script src="main.js"></script>
 	</body>
 </html>
