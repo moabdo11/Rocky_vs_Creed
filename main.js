@@ -1,125 +1,188 @@
 
-/* Event listeners added to buttons; */
+const body = document.querySelector('body');
+const playerChoices = document.querySelectorAll('.choiceButton');
+const rockyScoreDisplay = document.querySelector('#rockyScore');
+const apolloScoreDisplay = document.querySelector('#apolloScore');
+const roundResultDisplay = document.querySelector('#roundOutcome')
+const roundNumberDisplay = document.querySelector('#roundDisplay')
+const matchResultDisplay = document.querySelector('#matchResult')
+const resetButton = document.querySelector('#reset');
+const secondButton = document.querySelector('#secondbutton');
+let rockyChoice = '';
 
-document.querySelector("#rock").addEventListener("click", () => playRound("rock", computerPlay()));
-document.querySelector("#paper").addEventListener("click", () => playRound("paper", computerPlay()));
-document.querySelector("#scissors").addEventListener("click", () => playRound("scissors", computerPlay()));
-document.querySelector("#reset").addEventListener("click", () => reset());
+// Variable to keep round number
+let roundNum = 0;
+// Variable to keep Rocky score
+let rockyScore = 0;
+// Variable to keep Apollo score
+let apolloScore = 0;
+let roundOutcome;
 
+// Game begins with reset
+reset();
 
-// score animation function;
-function anim(x) {
-	if (x == "p") {
-		document.querySelector("#rocky-score").classList.add("score-animation");
+// Reset button event listener
+resetButton.addEventListener('click', (e) => {
+	reset();
+});
+
+// All variables and strings are reset
+function reset() {
+	rockyChoice = '';
+	roundNum = 0;
+	rockyScore = 0;
+	apolloScore = 0;
+	roundResultDisplay.textContent = 'CHOOSE YOUR PUNCH';
+	matchResultDisplay.textContent = '';
+	rockyScoreDisplay.textContent = rockyScore;
+	apolloScoreDisplay.textContent = apolloScore;
+	roundNumberDisplay.textContent = roundNum;
+
+// Enabling Player Choices
+	playerChoices.forEach((button) => {
+		button.disabled = false;
+	});
+
+	body.className = '';
+}
+
+// Player Choices Event Listeners
+
+playerChoices.forEach((button) => {
+	button.addEventListener('click', (e) => {
+		rockyChoice = button.id;
+		playRound(rockyChoice, apolloPlay());
+		updateScore();
+	});
+});
+
+// Score Animation;
+
+function animation(x) {
+	if (x === "r") {
+		document.querySelector("#rockyScore").classList.add("score-animation");
 	}
-	else if (x == "c") {
-		document.querySelector("#apollo-score").classList.add("score-animation");
+	else if (x == "a") {
+		document.querySelector("#apolloScore").classList.add("score-animation");
 	}
-	// after playing the animation, remove animation class;
+	// After playing the animation, remove animation class;
+
 	setTimeout(function () {
-		document.querySelector("#rocky-score").classList.remove("score-animation");
-		document.querySelector("#apollo-score").classList.remove("score-animation");
+		document.querySelector("#rockyScore").classList.remove("score-animation");
+		document.querySelector("#apolloScore").classList.remove("score-animation");
 	}, 1200);
 
 }
 
+// Apollo Random Selections
 
-
-// to restart the game;
-function reset() {
-	computerScore = 0;
-	playerScore = 0;
-	document.querySelector("#reset").style = "visibility:hidden";
-	document.querySelector("#status").innerHTML = "Select one;";
-	updateScore();
-}
-
-let apolloWins = 0;
-let rockyWins = 0;
-scoreKeeping();
-
-function computerPlay() {
+function apolloPlay() {
 	let choices = ['rock', 'paper', 'scissors'];
-	let compChoice = options[Math.floor(Math.random() * options.length)];
-		return compChoice;
+	let apolloChoice = choices[Math.floor(Math.random() * choices.length)];
+		return apolloChoice;
 }
 
-function playerPlay() {
-	playerSelection = prompt("Rock, Paper or Scissors?").toLowerCase();
 
-	if (playerSelection !== "rock" && playerSelection !== "paper" && playerSelection !== "scissors") {
-			alert('Please enter "Rock", "Paper" or "Scissors"');
-			playerPlay();
-	}
-};
+// Round by Round winner
 
 function playRound(playerSelection, computerSelection) {
-
-    if (playerSelection === 'rock' && computerSelection === 'paper') {
-			document.querySelector("#result").innerHTML = "Apollo wins, paper beats rock!";
-				result = 1;
-    } else if (playerSelection === 'rock' && computerSelection === 'scissors') {
-			document.querySelector("#result").innerHTML = "Rocky wins, rock beats scissors!";
-				result = 2;
-	  }	else if (playerSelection === 'paper' && computerSelection=== 'rock') {
-			document.querySelector("#result").innerHTML = "Rocky wins, paper beats rock!";
-				result = 2;
-	  }	else if (playerSelection === 'paper' && computerSelection === 'scissors') {
-			document.querySelector("#result").innerHTML = "Apollow wins, scissors beats paper!";
-				result = 1;
-	  } else if (playerSelection === 'scissors' && computerSelection === 'rock') {
-			document.querySelector("#result").innerHTML = "Apollo wins, rock beats scissors!";
-				result = 1;
-		} else if (playerSelection === 'scissors' && computerSelection === 'paper') {
-			document.querySelector("#result").innerHTML = "Rocky wins, scissors beats paper!";
-				result = 2;
-	} 	else {
-				result = 0;
-				document.querySelector("#status").innerHTML = "It's a tie.";
-	}
-	 scoreKeeping();
-}
-
-function perRoundPoints(result) {
-	(result === 1) ? compWins++: (result === 2) ? playerWins++: 0;
-
-}
-
-function totalPoints(compWins, playerWins) {
-  if (computerPoints > playerPoints) {
-    alert(`You lose.  Computer: ${computerPoints} pts, Player: ${playerPoints} pts`);
-  } else if (playerPoints > computerPoints) {
-    alert(`You win. Congratulations! Player: ${playerPoints} pts, Computer: ${computerPoints} pts`);
-  } else {
-    alert(`Tie game. Computer: ${computerPoints} pts, Player: ${playerPoints} pts`);
-  }
-}
-
-function game() {
-	for (let i = 0; i < 5; i++) {
-		let computerSelection = computerPlay();
-		let playerSelection =playerPlay();
-		let result = playRound(playerSelection, computerSelection);
-			perRoundPoints();
-	}
-}
-
-
-// Keeping Score
-
-function scoreKeeping() {
-	document.querySelector("#rscore").innerHTML = rockyWins;
-	document.querySelector('#ascore').innerHTML = apolloWins;
-	if (rockyWins >= 5 && rockyWins > apolloWins) {
-		alert('Yaay, you won!!!');
-		document.querySelector("#reset").style = "visibility:visible";
-	}
-	if (apolloWins >= 5 && apolloWins > rockyWins) {
-		alert('sorry, you lost this time!');
-		document.querySelector("#reset").style = "visibility:visible";
+	if (playerSelection == "rock") {
+		if (computerSelection == "paper") {
+			roundOutcome = "Apollo wins this round! Paper beats rock.";
+			animation("a");
+		} else if (computerSelection == "scissors") {
+			roundOutcome = "Rocky wins this round! Rock beats Scissors.";
+			animation("r");
+		} else {
+			roundOutcome = "This round was a tie!";
+		}
 	}
 
+	if (playerSelection == "paper") {
+		if (computerSelection == "scissors") {
+			roundOutcome = "Apollo wins this round! Scissors beats Paper.";
+			animation("a");
+		} else if (computerSelection == "rock") {
+			roundOutcome = "Rocky wins this round! Paper beats Rock.";
+			animation("r");
+		} else {
+			roundOutcome = "This round was a tie!";
+		}
+	}
 
-	//to reset focus after clicking;
-	document.activeElement.blur();
+	if (playerSelection == "scissors") {
+		if (computerSelection == "rock") {
+			roundOutcome = "Apollo wins this round! Rock beats Scissors.";
+			animation("a");
+		} else if (computerSelection == "paper") {
+			roundOutcome = "Rocky wins this round! Scissors beats Paper.";
+			animation("r");
+		} else {
+			roundOutcome = "This round was a tie!";
+		}
+	}
+	roundResultDisplay.textContent = roundOutcome;
 }
+
+function roundResult() {
+	roundNumberDisplay.textContent = roundNum;
+
+	if (roundOutcome.includes("Rocky wins") == true) {
+		rockyScore++;
+		rockyScoreDisplay.textContent = rockyScore;
+	} else if (roundOutcome.includes("Apollo wins") == true) {
+		apolloScore++;
+		apolloScoreDisplay.textContent = apolloScore;
+	}
+}
+
+
+
+// Continously updating the score
+
+function updateScore() {
+	++roundNum; // add to round counter each time updateScore() function is called
+
+	if (roundNum < 12) { // if number of rounds is less than 12, update score based on who won the round
+		roundResult();
+	} else { // else, determine winner and disable player option buttons
+		roundResult();
+		matchWinner();
+		playerChoices.forEach((button) => {
+			button.disabled = true;
+		});
+	}
+}
+
+
+function toggleById() {
+	if (roundNum < 12) {
+		document.getElementById("container").style.display = 'inline';
+	}
+    else
+	{
+		document.getElementById("container").style.display = 'none';
+		secondButton.classList.remove('hidden');
+	}
+}
+
+// Determining the match winner based on totals
+
+function matchWinner() {
+
+	toggleById();
+	if (rockyScore > apolloScore) {
+		matchResult = `Rocky wins the match ${rockyScore} to ${apolloScore}!`;
+		body.className += "rockywins";
+	} else if (apolloScore > rockyScore) {
+		matchResult = `Apollo wins the match ${apolloScore} to ${rockyScore}!`;
+		body.className += "apollowins";
+	} else {
+		matchResult = "It was a tie.";
+		body.className += "nowinner";
+	}
+	
+	matchResultDisplay.textContent = matchResult;
+}
+
+

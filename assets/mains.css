@@ -7,7 +7,8 @@
 body {
   font: 300 16px/22px "Lato", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-.container {
+
+#container {
   width: 100%;
   height:  auto;
   display: flex;
@@ -20,7 +21,7 @@ body {
   ========================================
 */
 
-.container header {
+#container header {
   grid-column: 1 / 4;
   justify-self: center;
   text-align: center;
@@ -31,10 +32,16 @@ body {
   Main Section
   ========================================
 */
+
+body h3 {
+  text-align: center;
+}
 .boxes {
   display: flex;
   justify-content: space-between;
-   border: 5px solid  #e4d5cc;
+  border-top: 5px solid  #e4d5cc;
+  border-left: 5px solid  #e4d5cc;
+  border-right: 5px solid  #e4d5cc;
 }
 
 .boxes h4 {
@@ -72,6 +79,11 @@ body {
   width: 150px;
 }
 
+#roundNumber {
+ text-align: center;
+ height: 10px;;
+}
+
 .options-header {
   background: white;
   text-align: center;
@@ -82,13 +94,13 @@ body {
   font-weight: 600;
 }
 
-.choicebox {
+.playerChoices {
   display: flex;
   justify-content: space-evenly;
 
 }
 
-.choicebox h4 {
+.playerChoices h4 {
     text-align: center;
 }
 
@@ -99,12 +111,20 @@ body {
   padding: 10px;
 }
 
+
 /*
   ========================================
   Typography/Animations
   ========================================
 */
 
+header {
+  font-size: 12px;
+}
+
+.score-box h5 {
+  text-decoration: underline;
+}
 @keyframes deneme{
    from{color:black;}
    to{color:rgb(145, 135, 135);
@@ -112,10 +132,36 @@ body {
     font-size: 6em;}
 }
 
-.animated{
+.score-animation{
     animation-name: deneme;
     animation-duration: 0.7s;
 }
+
+.rockywins {
+  background: url("/Users/moabdo/Desktop/Web Dev/Rocky_Creed/assets/rockywins.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: background 1.5s;
+}
+
+.apollowins {
+  background-image: url("/Users/moabdo/Desktop/Web Dev/Rocky_Creed/assets/apollowins.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: background 1.5s;
+}
+
+.nowinner {
+  background-image: url("/Users/moabdo/Desktop/Web Dev/Rocky_Creed/assets/nowinner.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: background 1.5s;
+}
+
+#matchResult {
+  color: white;
+}
+
 
 
 /*
@@ -123,15 +169,35 @@ body {
   Buttons
 ========================================
 */
+#reset {
+ display: flex;
+ align-self: center;
+ justify-content: center;
+ width: 200px;
+ background: #d2cce4;
+ padding: 10px;
+ margin: 10px;
+}
+
+.reset {
+  margin-left: auto;
+  margin-right: auto;
+}
 
 :hover.button {
-    border:dashed red 5px;
-    transform: scale(1.1,1.1);
-  }
+  border:dashed red 5px;
+  transform: scale(1.1,1.1);
+}
 
 
 :focus.button{
-      transform: scale(0.7,0.7);
-      transition: all .6s ease;
-  }
+  transform: scale(0.7,0.7);
+  transition: all .6s ease;
+}
+
+.hidden {
+  display: none;
+}
+
+
 

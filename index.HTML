@@ -14,7 +14,8 @@
 		<link href="assets/mains.css" rel="stylesheet">
 	</head>
 	<body>
-		<div class="container">
+		<h3 id="matchResult"></h3>
+		<div id="container">
 			<header>
 				<h1>Rock Papers Scissors Battle</h1>
 				<h4>Rocky Balboa vs Apollo Creed</h4>
@@ -27,43 +28,46 @@
 
 				<div class="score-box">
 					<div id="rocky-score">
-						<p>SCORE: <br>
-							<div id="update1"></div>
-						</p>
+						<h5>SCORE: 
+							<span class="score-animation" id="rockyScore"></span>
+						</h5>
 					</div>
 					<p id="VS">VS <br></p>
 					<div id= "apollo-score">
-						<p> SCORE:<br>
-							<div id="update2"></div>
-						</p>
+						<h5> SCORE:
+							<span id="apolloScore"></span>
+						</h5>
 					</div>
 				</div>
-
 				<div class="box-right">
 						<h4>Apollo Creed</h4>
 						<img class="images" src="assets/apollo.png" alt="Apollo Creed">
 				</div>
 			</div> 
+			<h3 id="roundNumber"><strong>Round: </strong><span id="roundDisplay"></span></h3>
+			<button type="button" name="button" id="reset">Reset Match</button>
 				<div class="options-header">
-					<h3>CHOOSE YOUR PUNCH</h3>
-					<p id="result" style="text-align:center"></p><br>
+					<div id="roundOutcome"></div>
 				</div>
-				<div class="choicebox">
+
+				<div class="playerChoices">
 					<div>
 						<h4>Rock</h4>
-						<img src="assets/rock.png" id="rock" class="button image-selections" alt="A Rock">
+						<button type="button" id="rock" class="choiceButton"><img src="assets/rock.png" class="button image-selections" alt="A Rock"></button> 
 					</div>
 					<div>
 						<h4>Paper</h4>
-						<img src="assets/paper.png" id="paper" class="button image-selections" alt="Paper">
+						<button type="button" id="paper" class="choiceButton"><img src="assets/paper.png" id="paper" class="button image-selections" alt="Paper"></button>
 					</div>
 					<div>
 						<h4>Scissors</h4>
-						<img src="assets/scissors.svg" id="scissors" class="button image-selections" alt="Sciccors">
+						<button type="button" id="scissors" class="choiceButton"><img src="assets/scissors.svg" id="scissors" class="button image-selections" alt="Sciccors"></button>
 					</div>
 				</div>
+		</div>
+		<div id="secondbutton" class="hidden reset">
+			<a href="index.HTML"><button type="button" name="button" id="reset">Reset Match</button></a>
 		</div>	
-
 		<script src="main.js"></script>
 	</body>
 </html>
