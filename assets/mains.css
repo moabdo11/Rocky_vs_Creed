@@ -138,26 +138,21 @@ header {
 }
 
 .rockywins {
-  background: url("
-        moabdo11-github.com/assets/rockywins.jpg
-      ");
+  background: url("moabdo11-github.com/assets/rockywins.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   transition: background 1.5s;
 }
 
 .apollowins {
-  background-image: url("moabdo11-github.com/assets/apollowins.jpg
-      ");
+  background-image: url("moabdo11-github.com/assets/apollowins.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   transition: background 1.5s;
 }
 
 .nowinner {
-  background-image: url("
-        moabdo11-github.com/assets/nowinner.jpg
-      ");
+  background-image: url("moabdo11-github.com/assets/nowinner.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   transition: background 1.5s;
